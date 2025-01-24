@@ -32,7 +32,8 @@ Khi Master muốn ghi dữ liệu vào Slave, sẽ trải qua các bước sau:
 6. Master gửi tín hiệu STOP (kéo SDA từ low -> high khi SCL đang giữ mức high).
 
 Nên nhớ rằng đường tín hiệu SDA và SCL là 2 chiều, và phải được nối với điện trở pull-up (thường dùng 4.7k) để tránh xung đột tín hiệu. Khi Master hoặc Slave muốn kéo tín hiệu xuống low, nó phải gửi tín hiệu low. Còn khi muốn kéo tín hiệu lên high, chỉ cần giải phóng đường tín hiệu để pull-up làm nhiệm vụ kéo đường tín hiệu lên high.
-... add image ...
+
+![sda_scl_line](./images/sda_scl_line.png)
 
 Giao thức truyền nhận dữ liệu khi Master muốn ghi dữ liệu vào Slave:
 ... add image ...
@@ -68,7 +69,7 @@ Testbench waveform:
 
 module này nhằm gửi lệnh hoặc dữ liệu đến LCD theo chế độ 4 bit.
 
-Đọc thêm về giao tiếp LCD chế độ 4 bit ở đây [LCD 4bit mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051)
+Đọc thêm về giao tiếp LCD chế độ 4 bit ở đây [LCD 4bit mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051).
 
 Các bước gửi lệnh hoặc dữ liệu bao gồm:
 1. Set RS = 0 (gửi lệnh) hoặc RS = 1 (gửi dữ liệu).
@@ -90,6 +91,9 @@ Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồ
 
 ... add image ...
 
+Testbench waveform:
+... add image ...
+
 
 ### lcd_display module
 
@@ -101,8 +105,13 @@ Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 v�
 3. Lệnh 22: chuyển con trỏ xuống đầu dòng 2.
 4. Lệnh 23 -> 38: dữ liệu của dòng 2.
 
+Testbench waveform:
+... add image ...
+
 ### top module
 
 Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
+
+... addd image ...
 
 ## 
