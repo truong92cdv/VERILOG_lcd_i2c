@@ -51,7 +51,7 @@ Waveform mục tiêu cần đạt:
 
 - Tạo clk 1 MHz (1 us) từ clk 100 MHz của ZUBoard.
 
-### i2c_writeframe module
+### [i2c_writeframe](./src/i2c_writeframe.v)
 
 - Đầu tiên, tạo module i2c_writeframe để ghi 1 frame (địa chỉ hoặc dữ liệu).
 
@@ -65,18 +65,18 @@ Waveform mục tiêu cần đạt:
 
 - Testbench waveform:
 
-![waveform_i2c_writeframe](./images/waveform_i2c_writeframe.png)
+![waveform_i2c_writeframe](./src/waveform_i2c_writeframe.png)
 
 - Để ý rằng frame đầu tiên có điều kiện START và frame cuối cùng có điều kiện STOP.
 
 
-### lcd_write_cmd_data module
+### [lcd_write_cmd_data](./src/lcd_write_cmd_data.v)
 
 - module này nhằm gửi lệnh hoặc dữ liệu đến LCD theo chế độ 4 bit.
 
 - Đọc thêm về giao tiếp LCD chế độ 4 bit ở đây [LCD 4bit mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051).
 
-- Các bước gửi lệnh hoặc dữ liệu bao gồm:
+Các bước gửi lệnh hoặc dữ liệu bao gồm:
 1. Set RS = 0 (gửi lệnh) hoặc RS = 1 (gửi dữ liệu).
 2. Set RW = 0 (chế độ ghi).
 3. Gửi 4 bit cao đến các chân D7 D6 D5 D4 của LCD.
@@ -84,7 +84,7 @@ Waveform mục tiêu cần đạt:
 5. Gửi 4 bit thấp đến các chân D7 D6 D5 D4 của LCD.
 6. Gửi 1 xung High -> Low đến chân EN của LCD để chốt dữ liệu.
 
-- Nên nhớ trước khi gửi dữ liệu, cần gửi các lệnh đến LCD để khởi tạo chế độ ghi 4 bit:
+Nên nhớ trước khi gửi dữ liệu, cần gửi các lệnh đến LCD để khởi tạo chế độ ghi 4 bit:
 1. Lệnh 0x02: set 4 bit mode.
 2. Lệnh 0x28: set LCD 16x2, 4 bit mode, 2 dòng, ký tự dạng 5x8.
 3. Lệnh 0x0C: set Display ON, tắt con trỏ.
@@ -103,7 +103,7 @@ Waveform mục tiêu cần đạt:
 ![waveform_lcd_write_cmd_data](./images/waveform_lcd_write_cmd_data.png)
 
 
-### lcd_display module
+### [lcd_display](./src/lcd_display.v)
 
 - Input gồm row1 và row2 là chuỗi ký tự cần hiển thị trên dòng 1 và dòng 2. Mỗi dòng 16 ký tự x 8 bit = 128 bit.
 
@@ -117,7 +117,7 @@ Testbench waveform:
 
 ![waveform_lcd_display](./images/waveform_lcd_display.png)
 
-### top module
+### [top](./src/top.v)
 
 - Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
 
