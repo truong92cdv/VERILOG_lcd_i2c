@@ -65,7 +65,7 @@ Waveform mục tiêu cần đạt:
 
 - Testbench waveform:
 
-![waveform_i2c_writeframe](./src/waveform_i2c_writeframe.png)
+![waveform_i2c_writeframe](./images/waveform_i2c_writeframe.png)
 
 - Để ý rằng frame đầu tiên có điều kiện START và frame cuối cùng có điều kiện STOP.
 
@@ -92,13 +92,13 @@ Nên nhớ trước khi gửi dữ liệu, cần gửi các lệnh đến LCD đ
 5. Lệnh 0x01: xóa màn hình
 6. Lệnh 0x80: Đưa con trỏ về đầu dòng 1.
 
-- Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồm ic PCF8574):
+Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồm ic PCF8574):
 
 ![schematic_lcd_i2c_pcf8574](./images/schematic_lcd_i2c_pcf8574.png)
 
-- Module lcd_write_cmd_data là 1 FSM gồm 14 states, nhằm ghi các lệnh và dữ liệu vào LCD theo chế độ 4 bit như trên.
+Module lcd_write_cmd_data là 1 FSM gồm 14 states, nhằm ghi các lệnh và dữ liệu vào LCD theo chế độ 4 bit như trên.
 
-- Testbench waveform:
+Testbench waveform:
 
 ![waveform_lcd_write_cmd_data](./images/waveform_lcd_write_cmd_data.png)
 
@@ -107,7 +107,7 @@ Nên nhớ trước khi gửi dữ liệu, cần gửi các lệnh đến LCD đ
 
 - Input gồm row1 và row2 là chuỗi ký tự cần hiển thị trên dòng 1 và dòng 2. Mỗi dòng 16 ký tự x 8 bit = 128 bit.
 
-- Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 vào mảng cmd_data_array (40 byte). Mảng này chứa các lệnh cần ghi vào LCD:
+Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 vào mảng cmd_data_array (40 byte). Mảng này chứa các lệnh cần ghi vào LCD:
 1. Lệnh 0 -> 5:  các lệnh khởi tạo LCD.
 2. Lệnh 6 -> 21: dữ liệu của dòng 1.
 3. Lệnh 22: chuyển con trỏ xuống đầu dòng 2.
@@ -119,7 +119,7 @@ Testbench waveform:
 
 ### [top](./src/top.v)
 
-- Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
+Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
 
 ![schematic_1](./images/schematic_1.png)
 ![schematic_top](./images/schematic_top.png)
