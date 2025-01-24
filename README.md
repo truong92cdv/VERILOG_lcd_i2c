@@ -18,6 +18,8 @@ Project demo giao tiếp Verilog với LCD qua giao thức I2C
 - LCD I2C module 16x2 (có tích hợp ic PCF8574 với địa chỉ là 0x27).
 - 2 đường dây nối SDA và SCL, dây VCC +5V, dây GND.
 
+![lcd_i2c_module](./images/lcd_i2c_module.jpg)
+
 ## I2C protocol
 
 Đọc thêm về giao thức I2C tại đây [I2C protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html).
