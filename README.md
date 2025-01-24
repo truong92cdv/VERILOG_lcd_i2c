@@ -45,9 +45,9 @@ Waveform mục tiêu cần đạt:
 
 ![waveform_i2c](./images/waveform_i2c.png)
 
-## Code explain
+## Source code
 
-### clk_divider module
+### [clk_divider](./src/clk_divider.v)
 
 - Tạo clk 1 MHz (1 us) từ clk 100 MHz của ZUBoard.
 
