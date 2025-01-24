@@ -14,8 +14,9 @@ Project demo giao tiếp Verilog với LCD qua giao thức I2C
 
 ## Thiết bị dùng trong project
 
-1. LCD I2C module 16x2 (có tích hợp ic PCF8574 với địa chỉ là 0x27).
-2. 2 đường dây nối SDA và SCL, dây VCC +5V, dây GND.
+- ZUBoard 1cg mã sản phẩm XCZU1CG-1SBVA484E
+- LCD I2C module 16x2 (có tích hợp ic PCF8574 với địa chỉ là 0x27).
+- 2 đường dây nối SDA và SCL, dây VCC +5V, dây GND.
 
 ## I2C protocol
 
@@ -31,6 +32,7 @@ Khi Master muốn ghi dữ liệu vào Slave, sẽ trải qua các bước sau:
 6. Master gửi tín hiệu STOP (kéo SDA từ low -> high khi SCL đang giữ mức high).
 
 Nên nhớ rằng đường tín hiệu SDA và SCL là 2 chiều, và phải được nối với điện trở pull-up (thường dùng 4.7k) để tránh xung đột tín hiệu. Khi Master hoặc Slave muốn kéo tín hiệu xuống low, nó phải gửi tín hiệu low. Còn khi muốn kéo tín hiệu lên high, chỉ cần giải phóng đường tín hiệu để pull-up làm nhiệm vụ kéo đường tín hiệu lên high.
+... add image ...
 
 Giao thức truyền nhận dữ liệu khi Master muốn ghi dữ liệu vào Slave:
 ... add image ...
@@ -47,9 +49,13 @@ Tạo clk 1 MHz (1 us) từ clk 100 MHz của ZUBoard.
 ### i2c_writeframe module
 
 Đầu tiên, tạo module i2c_writeframe để ghi 1 frame (địa chỉ hoặc dữ liệu).
+
 Xung clk đầu vào là 1MHz (1us).
+
 Cờ start_frame và stop_frame để báo hiệu frame hiện tại là frame đầu tiên (frame địa chỉ, thêm tín hiệu START) hay frame cuối cùng (thêm tín hiệu STOP).
+
 Tín hiệu SDA là 2 chiều, cần phải được khai báo theo kiểu tri-state buffer, kích hoạt bởi tín hiệu sda_en.
+
 Module là 1 FSM gồm 15 state, mục tiêu nhằm tạo được Waveform như hình phía trên.
 
 Testbench waveform:
@@ -61,6 +67,7 @@ Testbench waveform:
 ### lcd_write_cmd_data module
 
 module này nhằm gửi lệnh hoặc dữ liệu đến LCD theo chế độ 4 bit.
+
 Đọc thêm về giao tiếp LCD chế độ 4 bit ở đây [LCD 4bit mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051)
 
 Các bước gửi lệnh hoặc dữ liệu bao gồm:
@@ -87,6 +94,7 @@ Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồ
 ### lcd_display module
 
 input gồm row1 và row2 là chuỗi ký tự cần hiển thị trên dòng 1 và dòng 2. Mỗi dòng 16 ký tự x 8 bit = 128 bit.
+
 Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 vào mảng cmd_data_array (40 byte). Mảng này chứa các lệnh cần ghi vào LCD:
 1. Lệnh 0 -> 5:  các lệnh khởi tạo LCD.
 2. Lệnh 6 -> 21: dữ liệu của dòng 1.
@@ -96,6 +104,5 @@ Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 v�
 ### top module
 
 Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
-
 
 ## 
