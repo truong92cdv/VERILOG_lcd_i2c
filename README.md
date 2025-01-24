@@ -53,15 +53,15 @@ Tạo clk 1 MHz (1 us) từ clk 100 MHz của ZUBoard.
 
 ### i2c_writeframe module
 
-Đầu tiên, tạo module i2c_writeframe để ghi 1 frame (địa chỉ hoặc dữ liệu).
+- Đầu tiên, tạo module i2c_writeframe để ghi 1 frame (địa chỉ hoặc dữ liệu).
 
-Xung clk đầu vào là 1MHz (1us).
+- Xung clk đầu vào là 1MHz (1us).
 
-Cờ start_frame và stop_frame để báo hiệu frame hiện tại là frame đầu tiên (frame địa chỉ, thêm tín hiệu START) hay frame cuối cùng (thêm tín hiệu STOP).
+- Cờ start_frame và stop_frame để báo hiệu frame hiện tại là frame đầu tiên (frame địa chỉ, thêm tín hiệu START) hay frame cuối cùng (thêm tín hiệu STOP).
 
-Tín hiệu SDA là 2 chiều, cần phải được khai báo theo kiểu tri-state buffer, kích hoạt bởi tín hiệu sda_en.
+- Tín hiệu SDA là 2 chiều, cần phải được khai báo theo kiểu tri-state buffer, kích hoạt bởi tín hiệu sda_en.
 
-Module là 1 FSM gồm 15 state, mục tiêu nhằm tạo được Waveform như hình phía trên.
+- Module là 1 FSM gồm 15 states, mục tiêu nhằm tạo được Waveform như hình phía trên.
 
 Testbench waveform:
 
@@ -96,6 +96,8 @@ Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồ
 
 ![schematic_lcd_i2c_pcf8574](./images/schematic_lcd_i2c_pcf8574.png)
 
+- Module là 1 FSM gồm 14 states, nhằm ghi các lệnh và dữ liệu vào LCD theo chế độ 4 bit như trên.
+
 Testbench waveform:
 
 ![waveform_lcd_write_cmd_data](./images/waveform_lcd_write_cmd_data.png)
@@ -103,9 +105,9 @@ Testbench waveform:
 
 ### lcd_display module
 
-input gồm row1 và row2 là chuỗi ký tự cần hiển thị trên dòng 1 và dòng 2. Mỗi dòng 16 ký tự x 8 bit = 128 bit.
+- Input gồm row1 và row2 là chuỗi ký tự cần hiển thị trên dòng 1 và dòng 2. Mỗi dòng 16 ký tự x 8 bit = 128 bit.
 
-Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 vào mảng cmd_data_array (40 byte). Mảng này chứa các lệnh cần ghi vào LCD:
+- Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 vào mảng cmd_data_array (40 byte). Mảng này chứa các lệnh cần ghi vào LCD:
 1. Lệnh 0 -> 5:  các lệnh khởi tạo LCD.
 2. Lệnh 6 -> 21: dữ liệu của dòng 1.
 3. Lệnh 22: chuyển con trỏ xuống đầu dòng 2.
@@ -121,3 +123,13 @@ Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển t
 
 ![schematic_1](./images/schematic_1.png)
 ![schematic_top](./images/schematic_top.png)
+
+## Tham khảo
+
+![i2c_protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html)
+
+![lcd_4bit_mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051)
+
+![lcd_i2c_module](https://blog.csdn.net/qq_41795958/article/details/113649456)
+
+![lcd_i2c_project](https://blog.csdn.net/xyx0610/article/details/121715973)
