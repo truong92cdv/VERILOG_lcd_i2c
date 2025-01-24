@@ -10,7 +10,7 @@ Project demo giao tiếp Verilog với LCD qua giao thức I2C
 
 ## Kết quả thành phẩm
 
-... add image ...
+![demo_project](./images/demo_project.jpg)
 
 ## Thiết bị dùng trong project
 
@@ -36,10 +36,12 @@ Nên nhớ rằng đường tín hiệu SDA và SCL là 2 chiều, và phải đ
 ![sda_scl_line](./images/sda_scl_line.png)
 
 Giao thức truyền nhận dữ liệu khi Master muốn ghi dữ liệu vào Slave:
-... add image ...
+
+![i2c_protocol_write](./images/i2c_protocol_write.png)
 
 Waveform mục tiêu cần đạt:
-... add image ...
+
+![waveform_i2c](./images/waveform_i2c.png)
 
 ## Code explain
 
@@ -60,7 +62,8 @@ Tín hiệu SDA là 2 chiều, cần phải được khai báo theo kiểu tri-s
 Module là 1 FSM gồm 15 state, mục tiêu nhằm tạo được Waveform như hình phía trên.
 
 Testbench waveform:
-... add image ...
+
+![waveform_i2c_writeframe](./images/waveform_i2c_writeframe.png)
 
 Để ý rằng frame đầu tiên điều kiện START và frame cuối cùng có điều kiện STOP.
 
@@ -89,10 +92,11 @@ Nên nhớ trước khi gửi dữ liệu, cần gửi các lệnh đến LCD đ
 
 Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồm ic PCF8574):
 
-... add image ...
+![schematic_lcd_i2c_pcf8574](./images/schematic_lcd_i2c_pcf8574.png)
 
 Testbench waveform:
-... add image ...
+
+![waveform_lcd_write_cmd_data](./images/waveform_lcd_write_cmd_data.png)
 
 
 ### lcd_display module
@@ -106,12 +110,12 @@ Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 v�
 4. Lệnh 23 -> 38: dữ liệu của dòng 2.
 
 Testbench waveform:
-... add image ...
+
+![waveform_lcd_display](./images/waveform_lcd_display.png)
 
 ### top module
 
 Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
 
-... addd image ...
-
-## 
+![schematic_1](./images/schematic_1.png)
+![schematic_top](./images/schematic_top.png)
