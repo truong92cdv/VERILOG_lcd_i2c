@@ -126,10 +126,7 @@ Testbench waveform:
 
 ## Tham khảo
 
-[i2c_protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html)
-
-[lcd_4bit_mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051)
-
-[lcd_i2c_module](https://blog.csdn.net/qq_41795958/article/details/113649456)
-
-[lcd_i2c_project](https://blog.csdn.net/xyx0610/article/details/121715973)
+1. [i2c_protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html)
+2. [lcd_4bit_mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051)
+3. [lcd_i2c_module](https://blog.csdn.net/qq_41795958/article/details/113649456)
+4. [lcd_i2c_project](https://blog.csdn.net/xyx0610/article/details/121715973)
