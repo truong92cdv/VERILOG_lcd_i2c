@@ -1,6 +1,6 @@
 [English version here!](./README.md)
 
-# LCD I2C Verilog Demo
+# LCD I2C
 
 Project demo giao tiếp Verilog với LCD qua giao thức I2C
 
