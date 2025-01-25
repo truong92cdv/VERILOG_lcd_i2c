@@ -11,7 +11,7 @@ module i2c_writeframe(
     output reg  sda_en                  // sda write enable
 );
 
-    localparam  DELAY   = 10;           // 10us delay
+    localparam  DELAY       = 10;       // 10us delay
     reg [20:0]  cnt;                    // counter
     reg         cnt_clr;                // counter clear flag
 
@@ -22,7 +22,7 @@ module i2c_writeframe(
                 AfterStart  = 3,        // after start condition
                 PreWrite    = 4,        // prepare for write data
                 WriteLow    = 5,        // write data to sda line when scl is low      
-                WriteHigh   = 6,        // when sda is stable, pull scl line to latch the data  
+                WriteHigh   = 6,        // when sda is stable, pull scl high to latch the data  
                 WriteDone   = 7,        // write data done     
                 WaitAck     = 8,        // wait for ack from slave
                 Ack1        = 9,        // pull scl high when got ack
