@@ -47,15 +47,15 @@ Waveform mục tiêu cần đạt:
 
 ## V. Source code
 
----
+### [1. clk_divider](./src/clk_divider.v)
 
-### 1. [clk_divider](./src/clk_divider.v)
+---
 
 - Tạo clk 1 MHz (1 us) từ clk 100 MHz của ZUBoard.
 
----
+### [2. i2c_writeframe](./src/i2c_writeframe.v)
 
-### 2. [i2c_writeframe](./src/i2c_writeframe.v)
+---
 
 - Đầu tiên, tạo module i2c_writeframe để ghi 1 frame (địa chỉ hoặc dữ liệu).
 
@@ -77,9 +77,9 @@ Testbench waveform:
 
 Để ý rằng frame đầu tiên có điều kiện START và frame cuối cùng có điều kiện STOP.
 
----
+### [3. lcd_write_cmd_data](./src/lcd_write_cmd_data.v)
 
-### 3. [lcd_write_cmd_data](./src/lcd_write_cmd_data.v)
+---
 
 - module này nhằm gửi lệnh hoặc dữ liệu đến LCD theo chế độ 4 bit.
 
@@ -113,9 +113,9 @@ Testbench waveform:
 
 ![waveform_lcd_write_cmd_data](./images/waveform_lcd_write_cmd_data.png)
 
----
+### [4. lcd_display](./src/lcd_display.v)
 
-### 4. [lcd_display](./src/lcd_display.v)
+---
 
 - Input gồm row1 và row2 là chuỗi ký tự cần hiển thị trên dòng 1 và dòng 2. Mỗi dòng 16 ký tự x 8 bit = 128 bit.
 
@@ -131,16 +131,14 @@ Testbench waveform:
 
 ![waveform_lcd_display](./images/waveform_lcd_display.png)
 
----
+### [5. top](./src/top.v)
 
-### 5. [top](./src/top.v)
+---
 
 Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
 
 ![schematic_1](./images/schematic_1.png)
 ![schematic_top](./images/schematic_top.png)
-
----
 
 ## VI. Tham khảo
 
