@@ -10,11 +10,11 @@ A project demonstrating Verilog communication with an LCD via the I2C protocol.
 - **Email:** truong92cdv@gmail.com
 - **GitHub:** [truong92cdv](https://github.com/truong92cdv)
 
-## II. Demo Results
+## II. Result
 
 ![demo_project](./images/demo_project.jpg)
 
-## III. Equipment
+## III. Equipments
 
 - ZUBoard 1CG with part number XCZU1CG-1SBVA484E
 - LCD I2C module 16x2 (integrated IC **PCF8574**, I2C address 0x27).
