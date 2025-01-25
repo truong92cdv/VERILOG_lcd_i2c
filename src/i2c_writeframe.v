@@ -22,7 +22,7 @@ module i2c_writeframe(
                 AfterStart  = 3,        // after start condition
                 PreWrite    = 4,        // prepare for write data
                 WriteLow    = 5,        // write data to sda line when scl is low      
-                WriteHigh   = 6,        // write data to sda line when scl is high     
+                WriteHigh   = 6,        // when sda is stable, pull scl line to latch the data  
                 WriteDone   = 7,        // write data done     
                 WaitAck     = 8,        // wait for ack from slave
                 Ack1        = 9,        // pull scl high when got ack
@@ -124,7 +124,7 @@ module i2c_writeframe(
                     cnt_clr <= (cnt == DELAY-1) ? 1'b1 : 1'b0;      // delay 10us      
                 end
                 WriteHigh: begin
-                    scl     <= 1'b1;                                // when sda is stable, pull scl high to write a bit
+                    scl     <= 1'b1;                                // when sda is stable, pull scl high to latch a bit
                     cnt_clr <= (cnt == DELAY-1) ? 1'b1 : 1'b0;      // delay 10us
                 end
                 WriteDone: begin
