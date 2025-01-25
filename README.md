@@ -2,17 +2,17 @@
 
 Project demo giao tiếp Verilog với LCD qua giao thức I2C
 
-## Tác giả
+## I. Tác giả
 
 - **Name:** Võ Nhật Trường
 - **Email:** truong92cdv@gmail.com
 - **GitHub:** [truong92cdv](https://github.com/truong92cdv)
 
-## Kết quả thành phẩm
+## II. Kết quả demo
 
 ![demo_project](./images/demo_project.jpg)
 
-## Thiết bị dùng trong project
+## III. Thiết bị
 
 - ZUBoard 1cg mã sản phẩm XCZU1CG-1SBVA484E
 - LCD I2C module 16x2 (có tích hợp ic PCF8574 với địa chỉ là 0x27).
@@ -20,7 +20,7 @@ Project demo giao tiếp Verilog với LCD qua giao thức I2C
 
 ![lcd_i2c_module](./images/lcd_i2c_module.jpg)
 
-## I2C protocol
+## IV. I2C protocol
 
 Đọc thêm về giao thức I2C tại đây [I2C protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html).
 
@@ -45,13 +45,17 @@ Waveform mục tiêu cần đạt:
 
 ![waveform_i2c](./images/waveform_i2c.png)
 
-## Source code
+## V. Source code
 
-### [clk_divider](./src/clk_divider.v)
+---
+
+### 1. [clk_divider](./src/clk_divider.v)
 
 - Tạo clk 1 MHz (1 us) từ clk 100 MHz của ZUBoard.
 
-### [i2c_writeframe](./src/i2c_writeframe.v)
+---
+
+### 2. [i2c_writeframe](./src/i2c_writeframe.v)
 
 - Đầu tiên, tạo module i2c_writeframe để ghi 1 frame (địa chỉ hoặc dữ liệu).
 
@@ -65,16 +69,17 @@ Waveform mục tiêu cần đạt:
 
 ![schematic_1frame_FSM](./images/schematic_1frame_FSM.png)
 
-[Testbench code i2c_writeframe_tb.v](./tb/i2c_writeframe_tb.v)
+[Testbench code](./tb/i2c_writeframe_tb.v)
 
-- Testbench waveform:
+Testbench waveform:
 
 ![waveform_i2c_writeframe](./images/waveform_i2c_writeframe.png)
 
-- Để ý rằng frame đầu tiên có điều kiện START và frame cuối cùng có điều kiện STOP.
+Để ý rằng frame đầu tiên có điều kiện START và frame cuối cùng có điều kiện STOP.
 
+---
 
-### [lcd_write_cmd_data](./src/lcd_write_cmd_data.v)
+### 3. [lcd_write_cmd_data](./src/lcd_write_cmd_data.v)
 
 - module này nhằm gửi lệnh hoặc dữ liệu đến LCD theo chế độ 4 bit.
 
@@ -102,14 +107,15 @@ Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồ
 
 Module lcd_write_cmd_data là 1 FSM gồm 14 states, nhằm ghi các lệnh và dữ liệu vào LCD theo chế độ 4 bit như trên.
 
-[Testbench code lcd_write_cmd_data_tb.v](./tb/lcd_write_cmd_data_tb.v)
+[Testbench code](./tb/lcd_write_cmd_data_tb.v)
 
 Testbench waveform:
 
 ![waveform_lcd_write_cmd_data](./images/waveform_lcd_write_cmd_data.png)
 
+---
 
-### [lcd_display](./src/lcd_display.v)
+### 4. [lcd_display](./src/lcd_display.v)
 
 - Input gồm row1 và row2 là chuỗi ký tự cần hiển thị trên dòng 1 và dòng 2. Mỗi dòng 16 ký tự x 8 bit = 128 bit.
 
@@ -119,20 +125,24 @@ Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 v�
 3. Lệnh 22: chuyển con trỏ xuống đầu dòng 2.
 4. Lệnh 23 -> 38: dữ liệu của dòng 2.
 
-[Testbench code lcd_display_tb.v](./tb/lcd_display_tb.v)
+[Testbench code](./tb/lcd_display_tb.v)
 
 Testbench waveform:
 
 ![waveform_lcd_display](./images/waveform_lcd_display.png)
 
-### [top](./src/top.v)
+---
+
+### 5. [top](./src/top.v)
 
 Kết nối các module con lại, gán dữ liệu row1 và row2 cần hiển thị.
 
 ![schematic_1](./images/schematic_1.png)
 ![schematic_top](./images/schematic_top.png)
 
-## Tham khảo
+---
+
+## VI. Tham khảo
 
 1. [i2c_protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html)
 2. [lcd_4bit_mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051)
