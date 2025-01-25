@@ -33,7 +33,7 @@ Khi Master muốn ghi dữ liệu vào Slave, sẽ trải qua các bước sau:
 5. Slave gửi tín hiệu ACK. Lặp lại bước 4 và 5 đến khi Master đã truyền xong dữ liệu.
 6. Master gửi tín hiệu STOP (kéo SDA từ low -> high khi SCL đang giữ mức high).
 
-Nên nhớ rằng đường tín hiệu SDA và SCL là 2 chiều, và phải được nối với điện trở pull-up (thường dùng 4.7k) để tránh xung đột tín hiệu. Khi Master hoặc Slave muốn kéo tín hiệu xuống low, nó phải gửi tín hiệu low. Còn khi muốn kéo tín hiệu lên high, chỉ cần giải phóng đường tín hiệu để pull-up làm nhiệm vụ kéo đường tín hiệu lên high.
+Nên nhớ rằng đường tín hiệu SDA và SCL là 2 chiều, và phải được nối với điện trở pull-up (thường dùng 4.7k) để tránh xung đột tín hiệu. Khi Master hoặc Slave muốn kéo tín hiệu xuống low, nó phải gửi tín hiệu low. Còn khi muốn kéo tín hiệu lên high, chỉ cần giải phóng đường tín hiệu để pull-up register làm nhiệm vụ kéo đường tín hiệu lên high.
 
 ![sda_scl_line](./images/sda_scl_line.png)
 
@@ -61,7 +61,10 @@ Waveform mục tiêu cần đạt:
 
 - Tín hiệu SDA là 2 chiều, cần phải được khai báo theo kiểu tri-state buffer, kích hoạt bởi tín hiệu sda_en.
 
-- Module i2c_writeframe là 1 FSM gồm 15 states, mục tiêu nhằm tạo được Waveform như hình phía trên.
+- Module i2c_writeframe là 1 FSM gồm 15 states, mục tiêu nhằm tạo được 1 khung truyền hoàn chỉnh như sau:
+
+![schematic_1frame_FSM](./images/schematic_1frame_FSM.png)
+
 
 - Testbench waveform:
 
