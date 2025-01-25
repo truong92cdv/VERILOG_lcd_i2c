@@ -57,9 +57,8 @@ Waveform mục tiêu cần đạt:
 
 ---
 
-- Đầu tiên, tạo module **i2c_writeframe** để ghi 1 frame (địa chỉ hoặc dữ liệu).
+- Đầu tiên, thiết kế module **i2c_writeframe** để ghi 1 frame (địa chỉ hoặc dữ liệu).
 
-- Xung clk đầu vào là 1MHz (1us).
 
 - Cờ **start_frame** và **stop_frame** để báo hiệu frame hiện tại là frame đầu tiên (frame địa chỉ, thêm tín hiệu **START** ở đầu frame) hay frame cuối cùng (thêm tín hiệu **STOP** ở cuối frame).
 
@@ -84,6 +83,10 @@ Waveform mục tiêu cần đạt:
 - Module **i2c_writeframe** là 1 **FSM** gồm 15 states, mục tiêu nhằm tạo được 1 khung truyền hoàn chỉnh như sau:
 
 ![schematic_1frame_FSM](./images/schematic_1frame_FSM.png)
+
+Flowchart của i2c_writeframe FSM
+
+![FSM_i2c_writeframe](./images/FSM_i2c_writeframe.png)
 
 - Các trạng trái **PreStart**, **Start**, **AfterStart** chỉ xuất hiện khi cờ **start_frame** được set.
 - Tương tự, các trạng thái **PreStop** và **Stop** chỉ xuất hiện khi cờ **stop_frame** được set.
