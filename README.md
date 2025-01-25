@@ -69,6 +69,10 @@ Waveform mục tiêu cần đạt:
 
 ![schematic_1frame_FSM](./images/schematic_1frame_FSM.png)
 
+- Các trạng trái PreStart, Start, AfterStart chỉ xuất hiện khi cờ start_frame được set.
+- Tương tự, các trạng thái PreStop và Stop chỉ xuất hiện khi cờ stop_frame được set.
+- 2 trạng thái WriteLow và WriteHigh lặp lại 8 lần (1 khung truyền 8 bit).
+
 [Testbench code](./tb/i2c_writeframe_tb.v)
 
 Testbench waveform:
