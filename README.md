@@ -138,7 +138,7 @@ Khi gửi 1 byte đến PCF8574, dữ liệu sẽ được xuất ra các chân 
 2. Gửi data frame 1 gồm (**D7 D6 D5 D4 1 1 0 RS**).
 3. Gửi data frame 2 gồm (**D7 D5 D4 D4 1 0 0 RS**). Lúc này ta đã tạo 1 xung **EN** từ high -> low để chốt dữ liệu 4 bit cao.
 4. Gửi data frame 3 gồm (**D3 D2 D1 D0 1 1 0 RS**).
-5. Set cờ stop_frame. Gửi data frame 4 gồm (**D3 D2 D1 D0 1 0 0 RS**). Lúc này ta đã tạo xung **EN** thứ 2 để chốt dữ liệu 4 bit thấp.
+5. Set cờ **stop_frame**. Gửi data frame 4 gồm (**D3 D2 D1 D0 1 0 0 RS**). Lúc này ta đã tạo xung **EN** thứ 2 để chốt dữ liệu 4 bit thấp.
 
 Module **lcd_write_cmd_data** là 1 **FSM** gồm 14 states, nhằm thực hiện các bước trên.
 
