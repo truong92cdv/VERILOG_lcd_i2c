@@ -102,6 +102,8 @@ Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồ
 
 Module lcd_write_cmd_data là 1 FSM gồm 14 states, nhằm ghi các lệnh và dữ liệu vào LCD theo chế độ 4 bit như trên.
 
+[Testbench code lcd_write_cmd_data_tb.v](./tb/lcd_write_cmd_data_tb.v)
+
 Testbench waveform:
 
 ![waveform_lcd_write_cmd_data](./images/waveform_lcd_write_cmd_data.png)
@@ -116,6 +118,8 @@ Cần chú ý đoạn code genvar nhằm chuyển dữ liệu từ row1, row2 v�
 2. Lệnh 6 -> 21: dữ liệu của dòng 1.
 3. Lệnh 22: chuyển con trỏ xuống đầu dòng 2.
 4. Lệnh 23 -> 38: dữ liệu của dòng 2.
+
+[Testbench code lcd_display_tb.v](./tb/lcd_display_tb.v)
 
 Testbench waveform:
 
