@@ -130,15 +130,15 @@ Vì ta gửi lệnh (hoặc dữ liệu) cho LCD qua ic PCF8574. Ta cần nắm 
 
 Khi gửi 1 byte đến PCF8574, dữ liệu sẽ được xuất ra các chân tương ứng:
 
-- P7 P6 P5 P4 P3 P2 P1 P0 (đầu ra PCF8574)
-- D7 D6 D5 D4 BT EN RW RS (chân LCD tương ứng)
+- **P7  P6  P5  P4  P3  P2  P1  P0** (đầu ra PCF8574)
+- **D7 D6 D5 D4 BT EN RW RS** (chân LCD tương ứng)
 
 Để gửi 1 lệnh (hoặc dữ liệu) cho LCD theo chế độ 4 bit ta cần gửi 5 frames:
-1. Set cờ start_frame. Gửi frame địa chỉ (gồm 7 bit địa chỉ + bit 0 - write).
-2. Gửi data frame 1 gồm (D7 D6 D5 D4 1 1 0 RS).
-3. Gửi data frame 2 gồm (D7 D5 D4 D4 1 0 0 RS). Lúc này ta đã tạo 1 xung EN từ high -> low để chốt dữ liệu 4 bit cao.
-4. Gửi data frame 3 gồm (D3 D2 D1 D0 1 1 0 RS).
-5. Set cờ stop_frame. Gửi data frame 4 gồm (D3 D2 D1 D0 1 0 0 RS). Lúc này ta đã tạo xung EN thứ 2 để chốt dữ liệu 4 bit thấp.
+1. Set cờ **start_frame**. Gửi frame địa chỉ (gồm 7 bit địa chỉ + bit 0 - write).
+2. Gửi data frame 1 gồm (**D7 D6 D5 D4 1 1 0 RS**).
+3. Gửi data frame 2 gồm (**D7 D5 D4 D4 1 0 0 RS**). Lúc này ta đã tạo 1 xung **EN** từ high -> low để chốt dữ liệu 4 bit cao.
+4. Gửi data frame 3 gồm (**D3 D2 D1 D0 1 1 0 RS**).
+5. Set cờ stop_frame. Gửi data frame 4 gồm (**D3 D2 D1 D0 1 0 0 RS**). Lúc này ta đã tạo xung **EN** thứ 2 để chốt dữ liệu 4 bit thấp.
 
 Module **lcd_write_cmd_data** là 1 **FSM** gồm 14 states, nhằm thực hiện các bước trên.
 
