@@ -65,6 +65,22 @@ Waveform mục tiêu cần đạt:
 
 - Tín hiệu SDA là 2 chiều, cần phải được khai báo theo kiểu tri-state buffer, kích hoạt bởi tín hiệu sda_en.
 
+```
+    // sda is a bidirectional tri-state buffer enabled by sda_en.
+    // When sda_en = 1; if sda_out = 0, sda = 0; if sda_out = 1, sda is high impedance, allowing pull-up resistor pulls sda to 1.
+    // When sda_en = 0; sda is high impedance, allowing read sda from the bus.
+    assign sda = sda_en ? (~sda_out ? 1'b0 : 1'bz) : 1'bz;
+    assign sda_in = sda;
+```
+
+- Khi viết testbench thử nghiệm, sửa đoạn code trên lại 1 tí để hiện waveform cho dễ nhìn:
+
+```
+    // for simulation, we use those lines instead:
+    assign sda = sda_en ? sda_out : 1'bz;
+    assign sda_in = sda;
+```
+
 - Module i2c_writeframe là 1 FSM gồm 15 states, mục tiêu nhằm tạo được 1 khung truyền hoàn chỉnh như sau:
 
 ![schematic_1frame_FSM](./images/schematic_1frame_FSM.png)
