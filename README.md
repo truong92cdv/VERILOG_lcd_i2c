@@ -108,15 +108,7 @@ Testbench waveform:
 
 - Đọc thêm về giao tiếp LCD chế độ 4 bit ở đây [LCD 4bit mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051).
 
-Các bước gửi lệnh hoặc dữ liệu bao gồm:
-1. Set **RS = 0** (gửi lệnh) hoặc **RS = 1** (gửi dữ liệu).
-2. Set **RW = 0** (chế độ ghi).
-3. Gửi 4 bit cao đến các chân **D7 D6 D5 D4** của LCD.
-4. Gửi 1 xung High -> Low đến chân **EN** của LCD để chốt dữ liệu.
-5. Gửi 4 bit thấp đến các chân **D7 D6 D5 D4** của LCD.
-6. Gửi 1 xung High -> Low đến chân **EN** của LCD để chốt dữ liệu.
-
-Nên nhớ trước khi gửi dữ liệu, cần gửi các lệnh đến LCD để khởi tạo chế độ ghi 4 bit:
+Trước khi gửi dữ liệu đến LCD, cần gửi các lệnh khởi tạo chế độ ghi 4 bit:
 1. Lệnh **0x02**: set 4 bit mode.
 2. Lệnh **0x28**: set LCD 16x2, 4 bit mode, 2 dòng, ký tự dạng 5x8.
 3. Lệnh **0x0C**: set Display ON, tắt con trỏ.
@@ -124,11 +116,33 @@ Nên nhớ trước khi gửi dữ liệu, cần gửi các lệnh đến LCD đ
 5. Lệnh **0x01**: xóa màn hình
 6. Lệnh **0x80**: Đưa con trỏ về đầu dòng 1.
 
-Ngoài ra, cần nắm được sơ đồ kết nối của module LCD I2C (gồm ic PCF8574):
+Các bước để gửi 1 lệnh hoặc dữ liệu bao gồm:
+1. Set **RS = 0** (gửi lệnh) hoặc **RS = 1** (gửi dữ liệu).
+2. Set **RW = 0** (chế độ ghi).
+3. Gửi 4 bit cao đến các chân **D7 D6 D5 D4** của LCD.
+4. Gửi 1 xung High -> Low đến chân **EN** của LCD để chốt dữ liệu.
+5. Gửi 4 bit thấp đến các chân **D7 D6 D5 D4** của LCD.
+6. Gửi 1 xung High -> Low đến chân **EN** của LCD để chốt dữ liệu.
+
+Vì ta gửi lệnh (hoặc dữ liệu) cho LCD qua ic PCF8574. Ta cần nắm được sơ đồ kết nối của module LCD I2C (gồm ic PCF8574):
 
 ![schematic_lcd_i2c_pcf8574](./images/schematic_lcd_i2c_pcf8574.png)
 
-Module **lcd_write_cmd_data** là 1 **FSM** gồm 14 states, nhằm ghi các lệnh và dữ liệu vào LCD theo chế độ 4 bit như trên.
+Khi gửi 1 byte đến PCF8574, dữ liệu sẽ được xuất ra các chân tương ứng:
+
+P7 P6 P5 P4 P3 P2 P1 P0 (đầu ra PCF8574)
+D7 D6 D5 D4 BT EN RW RS (chân LCD tương ứng)
+
+Để gửi 1 lệnh (hoặc dữ liệu) cho LCD theo chế độ 4 bit ta cần gửi 5 frames:
+1. Set cờ start_frame. Gửi frame địa chỉ (gồm 7 bit địa chỉ + bit 0 - write).
+2. Gửi data frame 1 gồm (D7 D6 D5 D4 1 1 0 RS).
+3. Gửi data frame 2 gồm (D7 D5 D4 D4 1 0 0 RS). Lúc này ta đã tạo 1 xung EN từ high -> low để chốt dữ liệu 4 bit cao.
+4. Gửi data frame 3 gồm (D3 D2 D1 D0 1 1 0 RS).
+5. Set cờ stop_frame. Gửi data frame 4 gồm (D3 D2 D1 D0 1 0 0 RS). Lúc này ta đã tạo xung EN thứ 2 để chốt dữ liệu 4 bit thấp.
+
+Module **lcd_write_cmd_data** là 1 **FSM** gồm 14 states, nhằm thực hiện các bước trên.
+
+![FSM_lcd_write_cmd_data](./images/FSM_lcd_write_cmd_data.png)
 
 [Testbench code](./tb/lcd_write_cmd_data_tb.v)
 
