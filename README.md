@@ -130,8 +130,8 @@ Vì ta gửi lệnh (hoặc dữ liệu) cho LCD qua ic PCF8574. Ta cần nắm 
 
 Khi gửi 1 byte đến PCF8574, dữ liệu sẽ được xuất ra các chân tương ứng:
 
-P7 P6 P5 P4 P3 P2 P1 P0 (đầu ra PCF8574)
-D7 D6 D5 D4 BT EN RW RS (chân LCD tương ứng)
+- P7 P6 P5 P4 P3 P2 P1 P0 (đầu ra PCF8574)
+- D7 D6 D5 D4 BT EN RW RS (chân LCD tương ứng)
 
 Để gửi 1 lệnh (hoặc dữ liệu) cho LCD theo chế độ 4 bit ta cần gửi 5 frames:
 1. Set cờ start_frame. Gửi frame địa chỉ (gồm 7 bit địa chỉ + bit 0 - write).
