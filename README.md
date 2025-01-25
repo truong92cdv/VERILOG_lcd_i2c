@@ -65,6 +65,7 @@ Waveform mục tiêu cần đạt:
 
 ![schematic_1frame_FSM](./images/schematic_1frame_FSM.png)
 
+[Testbench code i2c_writeframe_tb.v](./tb/i2c_writeframe_tb.v)
 
 - Testbench waveform:
 
