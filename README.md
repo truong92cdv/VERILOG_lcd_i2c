@@ -162,6 +162,26 @@ Cần chú ý đoạn code **genvar** nhằm chuyển dữ liệu từ **row1**,
 3. Lệnh **22**: chuyển con trỏ xuống đầu dòng 2.
 4. Lệnh **23 -> 38**: dữ liệu của dòng 2.
 
+```
+    wire [7:0]  cmd_data_array [0:39];
+
+    assign cmd_data_array[0]    = 8'h02;    // 4 bit mode
+    assign cmd_data_array[1]    = 8'h28;    // initialization of 16x2 lcd in 4bit mode
+    assign cmd_data_array[2]    = 8'h0C;    // display ON, cursor OFF
+    assign cmd_data_array[3]    = 8'h06;    // auto increment cursor
+    assign cmd_data_array[4]    = 8'h01;    // clear dispay
+    assign cmd_data_array[5]    = 8'h80;    // cursor at first line
+    assign cmd_data_array[22]   = 8'hC0;    // cursor at second line
+
+    generate
+        genvar i;
+        for (i = 1; i < 17; i=i+1) begin: for_name
+            assign cmd_data_array[22-i] = row1[(i*8)-1:i*8-8];      // row1 data
+            assign cmd_data_array[39-i] = row2[(i*8)-1:i*8-8];      // row2 data
+        end
+    endgenerate
+```
+
 [Testbench code](./tb/lcd_display_tb.v)
 
 Testbench waveform:
