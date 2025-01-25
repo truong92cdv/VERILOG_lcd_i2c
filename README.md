@@ -1,6 +1,6 @@
 [Vietnamese version here!](./README_VI.md)
 
-# LCD I2C Verilog Demo
+# LCD I2C
 
 A project demonstrating Verilog communication with an LCD via the I2C protocol.
 
