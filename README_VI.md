@@ -202,7 +202,8 @@ Kết nối các module con lại, gán dữ liệu **row1** và **row2** cần 
 ## VI. Tham khảo
 
 1. [LCD_HC44780](./refs/LCD_HC44780.pdf)
-2. [i2c_protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html)
+2. [pcf8574](./refs/pcf8574.pdf)
+3. [i2c_protocol](https://dayhocstem.com/blog/2020/05/giao-dien-ghep-noi-i2c.html)
 2. [lcd_4bit_mode](https://www.electronicwings.com/8051/lcd16x2-interfacing-in-4-bit-mode-with-8051)
 3. [lcd_i2c_module](https://blog.csdn.net/qq_41795958/article/details/113649456)
 4. [lcd_i2c_project](https://blog.csdn.net/xyx0610/article/details/121715973)
