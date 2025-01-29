@@ -14,7 +14,7 @@ A project demonstrating Verilog communication with an LCD via the I2C protocol.
 
 ![demo_project](./images/demo_project.jpg)
 
-## III. Equipments
+## III. Hardware
 
 - ZUBoard 1CG with part number XCZU1CG-1SBVA484E
 - LCD I2C module 16x2 (integrated IC **PCF8574**, I2C address 0x27).
