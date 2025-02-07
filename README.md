@@ -196,7 +196,7 @@ Testbench waveform:
 Connect the submodules and assign the data to **row1** and **row2** for display.
 
 ![schematic_1](./images/schematic_1.png)
-![schematic_top](./images/schematic_top.png)
+![schematic_top](./images/schematic_top_module.png)
 
 ## VI. References
 
