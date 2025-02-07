@@ -197,7 +197,7 @@ Testbench waveform:
 Kết nối các module con lại, gán dữ liệu **row1** và **row2** cần hiển thị.
 
 ![schematic_1](./images/schematic_1.png)
-![schematic_top](./images/schematic_top.png)
+![schematic_top](./images/schematic_top_module.png)
 
 ## VI. Tham khảo
 
