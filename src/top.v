@@ -13,8 +13,8 @@ module top(
     wire [127:0]    row1;
     wire [127:0]    row2;
 
-    assign row1 =   " Happy New Year ";
-    assign row2 =   "      2025      ";
+    assign row1 =   "  FPT Jetking   ";
+    assign row2 =   " Vo Nhat Truong ";
 
     clk_divider clk_1MHz_gen(
         .clk        (clk),
