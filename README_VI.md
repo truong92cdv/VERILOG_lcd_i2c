@@ -12,7 +12,7 @@ Project demo giao tiếp Verilog với LCD qua giao thức I2C
 
 ## II. Kết quả demo
 
-![demo_project](./images/demo_project.jpg)
+![demo_project](./images/demo.jpg)
 
 ## III. Thiết bị
 
