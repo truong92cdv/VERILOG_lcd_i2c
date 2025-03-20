@@ -12,7 +12,7 @@ A project demonstrating Verilog communication with an LCD via the I2C protocol.
 
 ## II. Result
 
-![demo_project](./images/demo_project.jpg)
+![demo_project](./images/demo.jpg)
 
 ## III. Hardware
 
